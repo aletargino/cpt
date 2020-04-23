@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>AutoCarros Ale - Estoque de Carros</title>
+
+        <link rel="stylesheet" type="text/css" href="estilos.css">
+    </head>
+    <body>
+        <div class="cabecalho">
+            <div class="menu">
+                <h1 class="logo">AutoCarros Ale</h1>
+                <nav>
+                    <a href="carros.html">Carros</a>
+                    <a href="contato.html">Contato</a>
+                </nav>
+            </div>
+        </div>
+
+        <p>Veja aqui nosso magnífico estoque de carros disponíveis a venda! Preços imbatíveis você só irá achar aqui!</p>
+        
+        <div class="conteudo">
+            <h2>Lista de Carros</h2>
+        
+            <label for="filtroDeMarca">Filtrar Marca do Veículo:</label>
+            <select id="filtroDeMarca" value="" onchange="filtrarMarca()">
+            <option value="" selected>Todos</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Fiat">Fiat</option>
+            <option value="Chevrolet">Chevrolet</option>
+            <option value="Ford">Ford</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Honda">Honda</option>
+            </select>
+            
+            <label for="limiteDeCarros">Limitar Número de Carros:</label>
+            <select id="limiteDeCarros" value="" onchange="ajustarLimiteDeCarros()">
+            <option value="5" selected>5 carros</option>
+            <option value="15">15 carros</option>
+            <option value="25">25 carros</option>
+            <option value="50">50 carros</option>
+            </select>
+            
+            <div id="carros"></div>
+        </div>
+        <script>
+
+            var filtrosDaPagina = {
+                marca: "",
+                limite: 5,
+            };
+        
+            // Capturar Carros do Banco Aqui
+            var carroEmTexto = localStorage.getItem("carros");
+            var carros = JSON.parse(carroEmTexto);
+        
+            //recuperamos a div que vamos imprimir os carros
+            var divCarros = document.getElementById("carros");
+        
+        function imprimirCarro(carro) {
+        
+            var classePrecoEspecial = "";
+            if (carro.preco <= 20000) {
+                classePrecoEspecial = "preco-especial";
+            }
+        
+            var precoEmPt = carro.preco.toLocaleString('pt-BR');
+
+            var aparecerImagem = "";
+            if (carro.imagem) {
+             aparecerImagem = `<img src="${carro.imagem}">`;
+
+            }
+
+        
+            var cardDoCarro =`
+             <div class="card">
+                <header>
+                    <h3>${carro.marca} ${carro.modelo} / ${carro.ano} </h3>
+                    <div class="preco ${classePrecoEspecial}">R$${precoEmPt}</div>
+                </header>
+                <div class="ima">
+                    <p>${carro.descricao}</p>
+                    ${aparecerImagem}
+                </div>
+            </div>
+            `
+            
+            divCarros.innerHTML = divCarros.innerHTML + cardDoCarro
+            }
+        
+        
+        function filtrarMarca() {
+            var filtroDeMarca = document.getElementById("filtroDeMarca");
+            filtrosDaPagina.marca = filtroDeMarca.value;
+            filtrarCarros();
+        }
+        
+        function filtrarCarros() {
+               divCarros.innerHTML = "";
+               var carrosImpressos = 0;
+               for (carro of carros) {
+                   if (filtrosDaPagina.marca && carro.marca !== filtrosDaPagina.marca){
+                       continue;
+                   }
+                   imprimirCarro(carro);
+                   carrosImpressos++;
+                   if (carrosImpressos === filtrosDaPagina.limite){
+                       break;
+                   }
+               }
+           }
+           filtrarCarros();
+        
+        function ajustarLimiteDeCarros() {
+            var limiteDeCarros = document.getElementById("limiteDeCarros");
+            filtrosDaPagina.limite = Number(limiteDeCarros.value);
+            filtrarCarros();
+        }
+        
+        </script>
+    </body>
+</html>
+
+
