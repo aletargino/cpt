@@ -17,7 +17,12 @@
             Nossa, como está tudo claro por aqui!
         </p>
 
-        <button onclick="apagar()">Apagar</button>
+        
+        <div id="myDIV">
+            <button onclick="apagar()">Apagar</button>
+          </div>
+
+          <button onclick="acender()">Acender</button>
 
     </body>
 </html>
@@ -31,6 +36,22 @@
         paragrafo.innerHTML = "hora de mimir...";
         
         var imagem = document.getElementById("img01");
-        imagerm.innerHTML = "imgs/lampada-apagada.png"
+        imagem.src = "imgs/lampada-apagada.png"
+
+        document.body.style.backgroundColor = "black";
+
+        document.getElementById("h101").style.color = "white";
+        document.getElementById("p1").style.color = "white";
+
+        var botao= document.getElementById("myDIV");
+            if (botao.style.display === "none") {
+                botao.style.display = "block";
+            } else {
+                botao.style.display = "none";
+            }
+    }
+
+    function acender(){
+        
     }
 </script>
