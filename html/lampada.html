@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <title>lampada</title>
+
+        <link rel="stylesheet" type="text/css" href="lampada.css">
+
+    </head>
+
+    <body>
+        <h1 id="h101">Olá!</h1>
+
+        <img id="img01" src="imgs/lampada-acesa.png" height="150">
+
+        <p id="p1">
+            Nossa, como está tudo claro por aqui!
+        </p>
+
+        <button onclick="apagar()">Apagar</button>
+
+    </body>
+</html>
+
+<script>
+    function apagar(){
+        var titulo = document.getElementById("h101");
+        titulo.innerHTML = "zzzzzzz....";
+
+        var paragrafo = document.getElementById("p1");
+        paragrafo.innerHTML = "hora de mimir...";
+        
+        var imagem = document.getElementById("img01");
+        imagerm.innerHTML = "imgs/lampada-apagada.png"
+    }
+</script>
