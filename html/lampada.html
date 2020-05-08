@@ -20,9 +20,12 @@
         
         <div id="myDIV">
             <button onclick="apagar()">Apagar</button>
-          </div>
+        </div>
 
-          <button onclick="acender()">Acender</button>
+        <div id="myDIV2" hidden>
+            <button onclick="acender()">Acender</button>
+        </div>
+          
 
     </body>
 </html>
@@ -43,15 +46,35 @@
         document.getElementById("h101").style.color = "white";
         document.getElementById("p1").style.color = "white";
 
-        var botao= document.getElementById("myDIV");
-            if (botao.style.display === "none") {
-                botao.style.display = "block";
+        var botaoApagar= document.getElementById("myDIV");
+            if (botaoApagar.style.display === "none") {
+                botaoApagar.style.display = "block";
             } else {
-                botao.style.display = "none";
+                botaoApagar.style.display = "none";
             }
+            
+        document.getElementById("myDIV2").hidden = "false";
     }
 
     function acender(){
+        var titulo2 = document.getElementById("h101");
+        titulo2.innerHTML = "Olá!";
+
+        var paragrafo2 = document.getElementById("p1");
+        paragrafo2.innerHTML = "Nossa, como está tudo claro por aqui!";
         
+        var imagem2 = document.getElementById("img01");
+        imagem2.src = "imgs/lampada-acesa.png"
+        document.body.style.backgroundColor = "white";
+
+        document.getElementById("h101").style.color = "black";
+        document.getElementById("p1").style.color = "black";
+
+        var botao2= document.getElementById("myDIV2");
+            if (botao2.style.display === "none") {
+                botao2.style.display = "block";
+            } else {
+                botao2.style.display = "none";
+            }
     }
 </script>
