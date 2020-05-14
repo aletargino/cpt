@@ -18,13 +18,11 @@
         </p>
 
         
-        <div id="myDIV">
-            <button onclick="apagar()">Apagar</button>
-        </div>
-
-        <div id="myDIV2" hidden>
-            <button onclick="acender()">Acender</button>
-        </div>
+        
+        <button id="myDIV" onclick="apagar()">Apagar</button>
+        
+        <button id="myDIV2" hidden onclick="acender()">Acender</button>
+        
           
         <script>
             function apagar(){
@@ -43,12 +41,8 @@
                 document.getElementById("p1").style.color = "white";
         
                 var botaoApagar= document.getElementById("myDIV");
-                    if (botaoApagar.style.display === "none") {
-                        botaoApagar.style.display = "block";
-                    } else {
-                        botaoApagar.style.display = "none";
-                    }
-                    
+
+                document.getElementById("myDIV").hidden = true;   
                 document.getElementById("myDIV2").hidden = false;
             }
         
@@ -66,14 +60,9 @@
                 document.getElementById("h101").style.color = "black";
                 document.getElementById("p1").style.color = "black";
         
-                var botao2= document.getElementById("myDIV2");
-                    if (botao2.style.display === "none") {
-                        botao2.style.display = "block";
-                    } else {
-                        botao2.style.display = "none";
-                    }
-        
-                document.getElementById("myDIV").style.display = "inline";
+                document.getElementById("myDIV").hidden = false;   
+                document.getElementById("myDIV2").hidden = true;
+
         
                 
         
