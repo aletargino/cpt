@@ -20,8 +20,8 @@
             <input type="text" name="sobrenome" required>
             <br>
             <br>
-            <label for="Data de Nascimento">Data de Nascimento:</label>
-            <input type="date" id="Data de Nascimento" name="Data de Nascimento" required>
+            <label for="nascimento">Data de Nascimento:</label>
+            <input type="date" id="nascimento" name="nascimento" required>
             <br>
             <br>
             <label for="sexo">Sexo:</label>
@@ -54,7 +54,6 @@
             <label for="preparacao"> Preparação para Esporte</label><br>
             <input type="checkbox" name="estetica">
             <label for="estetica"> Estética</label><br>
-            </form>
             <br>
             <label for="observacoes">Observaçōes:</label>
             <br>
@@ -68,7 +67,7 @@
 
             var formDeCadastro = document.getElementById("cadastro");
             formDeCadastro.addEventListener("submit", cadastrar);
-             
+
             function cadastrar(event) {
                 event.preventDefault();
                 var dadosDeCadastro = new FormData(formDeCadastro); 
@@ -76,7 +75,7 @@
                 var cadastro = {
                     nome: dadosDeCadastro.get("nome"),
                     sobrenome: dadosDeCadastro.get("sobrenome"),
-                    dataNascimento: dadosDeCadastro.get("Data de Nascimento"),
+                    dataNascimento:dadosDeCadastro.get("nascimento"),
                     sexo: dadosDeCadastro.get("sexo"),
                     peso: Number (dadosDeCadastro.get("peso")),
                     altura: Number (dadosDeCadastro.get("altura")),
@@ -86,11 +85,10 @@
 
                 //a idade mínima para cadastro na Super GYM é de 14 anos,
                  
-                    var hoje = new Date;  
-                    var nascimento = new Date($("Data de Nascimento").val());  
-                    var idade = hoje.getFullYear() - nascimento.getFullYear();  
+                    var hoje = new Date;    
+                    var idade = hoje.getFullYear() - cadastro.dataNascimento.getFullYear();  
                     if (new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate()) <  
-                    new Date(hoje.getFullYear(), nascimento.getMonth(), nascimento.getDate())){  
+                    new Date(hoje.getFullYear(), cadastro.dataNascimento.getMonth(), cadastro.dataNascimento.getDate())){  
                     idade--;
                     } else if (idade < 14){
                     alert("Idade mínima para cadastro na Super GYM é de 14 anos");
@@ -120,9 +118,8 @@
                     return false;
                 }
 
+                formDeCadastro.reset();
             }
-
-
 
         </script>
     </body>
