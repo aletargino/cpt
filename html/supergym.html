@@ -63,4 +63,61 @@
             <br>
             <button type="submit">Cadastrar</button>
         </form>
+
+        <script>
+            function cadastrar(event) {
+                event.preventDefault();
+                var dadosDeCadastro = new FormData(formDeCadastro); 
+
+                var cadastro = {
+                    nome: dadosDeCadastro.get("nome"),
+                    sobrenome: dadosDeCadastro.get("sobrenome"),
+                    dataNascimento: dadosDeCadastro.get("Data de Nascimento"),
+                    sexo: dadosDeCadastro.get("sexo"),
+                    peso: Number (dadosDeCadastro.get("peso")),
+                    altura: Number (dadosDeCadastro.get("altura")),
+                    objetivos: dadosDeCadastro.get("objetivos"),
+                    observacoes: dadosDeCadastro.get("observacoes"),
+                };
+
+                //a idade mínima para cadastro na Super GYM é de 14 anos,
+                 
+                    var hoje = new Date;  
+                    var nascimento = new Date($("Data de Nascimento").val());  
+                    var idade = hoje.getFullYear() - nascimento.getFullYear();  
+                    if (new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate()) <  
+                    new Date(hoje.getFullYear(), nascimento.getMonth(), nascimento.getDate())){  
+                    idade--;
+                    } else if (idade < 14){
+                    alert("Idade mínima para cadastro na Super GYM é de 14 anos");
+                    return false;
+                    }
+                
+                //pelo menos um objetivo deve ser marcado, caso contrário exiba um alerta de erro ao usuário:
+                if (objetivos.checked == false){
+                alert("Pelo menos um objetivo deve serr marcado!");
+                }
+
+                //o peso mínimo é de 30kg e máximo de 900kg
+                if (isNaN(cadastro.peso < 30)){
+                    alert("Peso precisa ser maior que 30kg!");
+                    return false;
+                } else if (cadastro.peso >900){
+                    alert("Peso precisa ser menor que 900kg!");
+                    return false;
+                }
+
+                //a altura mínima é de 1 metro e máxima de 3 metros
+                if (isNaN(cadastro.altura < 1)){
+                    alert("Altura precisa ser maior que 1 metros!");
+                    return false;
+                } else if (cadastro.altura >3){
+                    alert("Altura precisa ser menor que 3 metros!");
+                    return false;
+                }
+
+            }
+
+        </script>
     </body>
+</html>
