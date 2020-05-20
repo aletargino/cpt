@@ -65,6 +65,10 @@
         </form>
 
         <script>
+
+            var formDeCadastro = document.getElementById("cadastro");
+            formDeCadastro.addEventListener("submit", cadastrar);
+             
             function cadastrar(event) {
                 event.preventDefault();
                 var dadosDeCadastro = new FormData(formDeCadastro); 
@@ -95,7 +99,7 @@
                 
                 //pelo menos um objetivo deve ser marcado, caso contrário exiba um alerta de erro ao usuário:
                 if (objetivos.checked == false){
-                alert("Pelo menos um objetivo deve serr marcado!");
+                alert("Pelo menos um objetivo deve ser marcado!");
                 }
 
                 //o peso mínimo é de 30kg e máximo de 900kg
@@ -117,6 +121,8 @@
                 }
 
             }
+
+
 
         </script>
     </body>
