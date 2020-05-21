@@ -25,7 +25,7 @@
             <br>
             <br>
             <label for="sexo">Sexo:</label>
-            <input type="radio" id="masculino" name="sexo" value="masculino">
+            <input type="radio" id="masculino" name="sexo" value="masculino" required>
             <label for="masculino">Masculino</label>
             <input type="radio" id="feminino" name="sexo" value="feminino">
             <label for="feminino">Feminino</label>
@@ -43,17 +43,21 @@
             <br>
             <label for="objetivos">Objetivos (pode escolher mais de um):</label>
             <br>
-            <form action="" method="get">
             <input type="checkbox" name="emagrecimento">
-            <label for="emagrecimento"> Emagrecimento</label><br>
+            <label for="emagrecimento"> Emagrecimento</label>
+            <br>
             <input type="checkbox" name="condicionamento">
-            <label for="condicionamento"> Condicionamento Físico</label><br>
+            <label for="condicionamento"> Condicionamento Físico</label>
+            <br>
             <input type="checkbox" name="saude">
-            <label for="saude"> Saúde</label><br>
+            <label for="saude"> Saúde</label>
+            <br>
+            <input type="checkbox" name="preparacao">
+            <label for="preparacao"> Preparação para Esporte</label>
+            <br>
             <input type="checkbox" name="estetica">
-            <label for="preparacao"> Preparação para Esporte</label><br>
-            <input type="checkbox" name="estetica">
-            <label for="estetica"> Estética</label><br>
+            <label for="estetica"> Estética</label>
+            <br>
             <br>
             <label for="observacoes">Observaçōes:</label>
             <br>
@@ -79,26 +83,14 @@
                     sexo: dadosDeCadastro.get("sexo"),
                     peso: Number (dadosDeCadastro.get("peso")),
                     altura: Number (dadosDeCadastro.get("altura")),
-                    objetivos: dadosDeCadastro.get("objetivos"),
+                    emagrecimento: dadosDeCadastro.get("emagrecimento"),
+                    condicionamento: dadosDeCadastro.get("condicionamento"),
+                    saude: dadosDeCadastro.get("saude"),
+                    preparacao: dadosDeCadastro.get("preparacao"),
+                    estetica: dadosDeCadastro.get("estetica"),
                     observacoes: dadosDeCadastro.get("observacoes"),
                 };
 
-                //a idade mínima para cadastro na Super GYM é de 14 anos,
-                 
-                    var hoje = new Date;    
-                    var idade = hoje.getFullYear() - cadastro.dataNascimento.getFullYear();  
-                    if (new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate()) <  
-                    new Date(hoje.getFullYear(), cadastro.dataNascimento.getMonth(), cadastro.dataNascimento.getDate())){  
-                    idade--;
-                    } else if (idade < 14){
-                    alert("Idade mínima para cadastro na Super GYM é de 14 anos");
-                    return false;
-                    }
-                
-                //pelo menos um objetivo deve ser marcado, caso contrário exiba um alerta de erro ao usuário:
-                if (objetivos.checked == false){
-                alert("Pelo menos um objetivo deve ser marcado!");
-                }
 
                 //o peso mínimo é de 30kg e máximo de 900kg
                 if (isNaN(cadastro.peso < 30)){
@@ -117,9 +109,30 @@
                     alert("Altura precisa ser menor que 3 metros!");
                     return false;
                 }
+ 
+                //pelo menos um objetivo deve ser marcado, caso contrário exiba um alerta de erro ao usuário:
+                if (cadastro.emagrecimento && cadastro.condicionamento && cadastro.saude && cadastro.preparacao && cadastro.estetica === null){
+                    alert("Pelo menos um objetivo deve ser marcado!");
+                    return false;
+                }               
 
-                formDeCadastro.reset();
             }
+
+             //a idade mínima para cadastro na Super GYM é de 14 anos,
+            function anoNas(){
+                var hoje = new Date;    
+                var idade = hoje.getFullYear() - cadastro.dataNascimento.getFullYear();  
+                if (new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate()) <  
+                new Date(hoje.getFullYear(), cadastro.dataNascimento.getMonth(), cadastro.dataNascimento.getDate())){  
+                idade--;
+                } else if (idade < 14){
+                alert("Idade mínima para cadastro na Super GYM é de 14 anos");
+                return false;
+                }
+            }
+
+            anoNas();
+                 
 
         </script>
     </body>
