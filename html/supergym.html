@@ -128,7 +128,7 @@
                     return false;
                 }
 
-                relatorio();
+                relatorio(cadastro,idade);
 
             }
             
@@ -137,20 +137,37 @@
                 return ~~((Date.now() - birthday) / (31557600000));
             }
 
-            function relatorio(){
+            function relatorio(cadastro,idade){
         
                 var paragrafo = document.getElementById("relatorio");
 
                 var imc = cadastro.peso/(cadastro.altura * cadastro.altura);
 
+                
                 paragrafo.innerHTML = 
-                "<p>Parabéns, </p>" + cadastro.nome +
-                "<p>Seja bem vindo à nossa academia! Esperamos que você alcance seus objtivos.</p>" +
+                "<p>Parabéns, " + cadastro.nome + " " + cadastro.sobrenome + "!" + 
+                "<br>Seja bem vindo à nossa academia! Esperamos que você alcance seus objtivos.</p>" +
                 "<p>Seguem os dados da sua ficha cadastral:</p>" +
-                "<p>Sexo:</p>" + cadastro.sexo +
-                "<p>Idade:</p>" + 
-                "<p>Objetivos:</p>" +
-                "<p>Observaçōes:</p>" + cadastro.observacoes +
+                "<p>Sexo: " + cadastro.sexo + "</p>" +
+                "<p>Idade: " + idade + "</p>" +
+                "Objetivos: <br>";
+                if (cadastro.emagrecimento){
+                paragrafo.innerHTML += "emagrecimento;";
+                } 
+                if (cadastro.condicionamento){
+                relatorio.innerHTML += "condicionamento;";
+                } 
+                if (cadastro.saude){
+                relatorio.innerHTML += "saude;";
+                } 
+                if (cadastro.preparacao){
+                relatorio.innerHTML += "preparação;";
+                } 
+                if (cadastro.estetica){
+                relatorio.innerHTML += "estética;";
+                } 
+            
+                paragrafo.innerHTML += "<p>Observaçōes: <br>" + cadastro.observacoes + "</p>" + 
                 "<h2>Tabela de Acompanhamento Trimestral</h2>" + 
                 "<table border=\"1\"><tr><td>Data:</td><td>Início</td><td>Mês 1</td><td>Mês 2</td><td>Mês 3</td></tr>" + 
                 "<tr><td>Peso:</td><td>" + cadastro.peso + "</td><td> --- </td><td> --- </td><td> --- </td></tr>" +
