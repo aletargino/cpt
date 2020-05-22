@@ -11,61 +11,64 @@
             Ficha Cadastral SUPER GYM
         </h1>
 
-        <form id="cadastro">
-            <label for="nome">Nome:</label>
-            <input type="text" name="nome" required>
-            <br>
-            <br>
-            <label for="sobrenome">Sobrenome:</label>
-            <input type="text" name="sobrenome" required>
-            <br>
-            <br>
-            <label for="nascimento">Data de Nascimento:</label>
-            <input type="date" id="nascimento" name="nascimento" required>
-            <br>
-            <br>
-            <label for="sexo">Sexo:</label>
-            <input type="radio" id="masculino" name="sexo" value="masculino" required>
-            <label for="masculino">Masculino</label>
-            <input type="radio" id="feminino" name="sexo" value="feminino">
-            <label for="feminino">Feminino</label>
-            <input type="radio" id="outro" name="sexo" value="outro">
-            <label for="outro">Outro</label>
-            <br>
-            <br>
-            <label for="peso">Peso:</label>
-            <input type="text" name="peso" required>Kg
-            <br>
-            <br>
-            <label for="altura">Altura:</label>
-            <input type="altura" name="altura" required>m
-            <br>
-            <br>
-            <label for="objetivos">Objetivos (pode escolher mais de um):</label>
-            <br>
-            <input type="checkbox" name="emagrecimento">
-            <label for="emagrecimento"> Emagrecimento</label>
-            <br>
-            <input type="checkbox" name="condicionamento">
-            <label for="condicionamento"> Condicionamento Físico</label>
-            <br>
-            <input type="checkbox" name="saude">
-            <label for="saude"> Saúde</label>
-            <br>
-            <input type="checkbox" name="preparacao">
-            <label for="preparacao"> Preparação para Esporte</label>
-            <br>
-            <input type="checkbox" name="estetica">
-            <label for="estetica"> Estética</label>
-            <br>
-            <br>
-            <label for="observacoes">Observaçōes:</label>
-            <br>
-            <textarea name="observacoes" id="observacoes" rows="5"></textarea>
-            <br>
-            <br>
-            <button type="submit">Cadastrar</button>
-        </form>
+        <div id="relatorio">
+            <form id="cadastro">
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome" required>
+                <br>
+                <br>
+                <label for="sobrenome">Sobrenome:</label>
+                <input type="text" name="sobrenome" required>
+                <br>
+                <br>
+                <label for="nascimento">Data de Nascimento:</label>
+                <input type="date" id="nascimento" name="nascimento" required>
+                <br>
+                <br>
+                <label for="sexo">Sexo:</label>
+                <input type="radio" id="masculino" name="sexo" value="masculino" required>
+                <label for="masculino">Masculino</label>
+                <input type="radio" id="feminino" name="sexo" value="feminino">
+                <label for="feminino">Feminino</label>
+                <input type="radio" id="outro" name="sexo" value="outro">
+                <label for="outro">Outro</label>
+                <br>
+                <br>
+                <label for="peso">Peso:</label>
+                <input type="text" name="peso" required>Kg
+                <br>
+                <br>
+                <label for="altura">Altura:</label>
+                <input type="altura" name="altura" required>m
+                <br>
+                <br>
+                <label for="objetivos">Objetivos (pode escolher mais de um):</label>
+                <br>
+                <input type="checkbox" name="emagrecimento">
+                <label for="emagrecimento"> Emagrecimento</label>
+                <br>
+                <input type="checkbox" name="condicionamento">
+                <label for="condicionamento"> Condicionamento Físico</label>
+                <br>
+                <input type="checkbox" name="saude">
+                <label for="saude"> Saúde</label>
+                <br>
+                <input type="checkbox" name="preparacao">
+                <label for="preparacao"> Preparação para Esporte</label>
+                <br>
+                <input type="checkbox" name="estetica">
+                <label for="estetica"> Estética</label>
+                <br>
+                <br>
+                <label for="observacoes">Observaçōes:</label>
+                <br>
+                <textarea name="observacoes" id="observacoes" rows="5"></textarea>
+                <br>
+                <br>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+
 
         <script>
 
@@ -123,14 +126,45 @@
                 if (idade < 14) {
                     alert("Idade minima para cadastro na Super GYM é de 14 anos");
                     return false;
-
                 }
+
+                relatorio();
 
             }
             
             function calcAge(dateString) {
                 var birthday = +new Date(dateString);
                 return ~~((Date.now() - birthday) / (31557600000));
+            }
+
+            function relatorio(){
+        
+                var paragrafo = document.getElementById("relatorio");
+
+                var imc = cadastro.peso/(cadastro.altura * cadastro.altura);
+
+                paragrafo.innerHTML = 
+                "<p>Parabéns, </p>" + cadastro.nome +
+                "<p>Seja bem vindo à nossa academia! Esperamos que você alcance seus objtivos.</p>" +
+                "<p>Seguem os dados da sua ficha cadastral:</p>" +
+                "<p>Sexo:</p>" + cadastro.sexo +
+                "<p>Idade:</p>" + 
+                "<p>Objetivos:</p>" +
+                "<p>Observaçōes:</p>" + cadastro.observacoes +
+                "<h2>Tabela de Acompanhamento Trimestral</h2>" + 
+                "<table border=\"1\"><tr><td>Data:</td><td>Início</td><td>Mês 1</td><td>Mês 2</td><td>Mês 3</td></tr>" + 
+                "<tr><td>Peso:</td><td>" + cadastro.peso + "</td><td> --- </td><td> --- </td><td> --- </td></tr>" +
+                "<tr><td>IMC:</td><td>" + imc.toFixed(2) + "</td><td> --- </td><td> --- </td><td> --- </td></tr>" +
+                "</table>";
+
+
+                
+                
+
+
+
+                
+
             }
             
         </script>
