@@ -111,29 +111,28 @@
                 }
  
                 //pelo menos um objetivo deve ser marcado, caso contrário exiba um alerta de erro ao usuário:
-                if (cadastro.emagrecimento && cadastro.condicionamento && cadastro.saude && cadastro.preparacao && cadastro.estetica === null){
+                if (!cadastro.emagrecimento && !cadastro.condicionamento && !cadastro.saude && !cadastro.preparacao && !cadastro.estetica){
                     alert("Pelo menos um objetivo deve ser marcado!");
                     return false;
                 }               
 
-            }
+                
+                //a idade mínima para cadastro na Super GYM é de 14 anos,
+                 var idade = calcAge(new Date(cadastro.dataNascimento));
 
-             //a idade mínima para cadastro na Super GYM é de 14 anos,
-            function anoNas(){
-                var hoje = new Date;    
-                var idade = hoje.getFullYear() - cadastro.dataNascimento.getFullYear();  
-                if (new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate()) <  
-                new Date(hoje.getFullYear(), cadastro.dataNascimento.getMonth(), cadastro.dataNascimento.getDate())){  
-                idade--;
-                } else if (idade < 14){
-                alert("Idade mínima para cadastro na Super GYM é de 14 anos");
-                return false;
+                if (idade < 14) {
+                    alert("Idade minima para cadastro na Super GYM é de 14 anos");
+                    return false;
+
                 }
+
             }
-
-            anoNas();
-                 
-
+            
+            function calcAge(dateString) {
+                var birthday = +new Date(dateString);
+                return ~~((Date.now() - birthday) / (31557600000));
+            }
+            
         </script>
     </body>
 </html>
